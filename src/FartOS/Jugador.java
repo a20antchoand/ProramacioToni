@@ -1,4 +1,4 @@
-package JocDeCartes;
+package FartOS;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class Jugador {
 	 * */
 	
 	private final int vidasEstandard = 5;
-	
+	public static int idJugador = 0;
 	/*
 	 * ATRIBUTS JUGADOR
 	 * 
@@ -24,6 +24,7 @@ public class Jugador {
 	private List<Carta> ma;
 	private int pos = 0;
 	private int id;
+	private boolean estaEspecial = false;
 	private int vides;
 	private int patada = -1;
 	private int zancadilla = -1;
@@ -53,7 +54,7 @@ public class Jugador {
 	public Jugador(String nom) {
 		this.nom = nom;
 		this.vides = vidasEstandard;
-		this.id = Taulell.idJugador++;
+		this.id = idJugador++;
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -164,6 +165,14 @@ public class Jugador {
 	@Override
 	public String toString () {
 		return "Nom: " + nom + " / Vidas: " + vides;
+	}
+
+	public boolean isEstaEspecial() {
+		return estaEspecial;
+	}
+
+	public void setEstaEspecial(boolean estaEspecial) {
+		this.estaEspecial = estaEspecial;
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,4 +1,4 @@
-package JocDeCartes;
+package FartOSAutomata;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +47,8 @@ public class Apocalipsis {
 	static Taulell taulell;
 	static Jugador guanyador = null;
 	static boolean bloqueig = false;
+	
+	static List<Jugador> jugadors = new ArrayList<>();
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
@@ -58,7 +60,7 @@ public class Apocalipsis {
 
 	public static void main(String[] args) throws Exception {
 
-		List<Jugador> jugadors = new ArrayList<>();
+		
 
 		Jugador guanyador = null;
 		Jugador objectiu;
@@ -72,7 +74,7 @@ public class Apocalipsis {
 		 * OBTENIM ELS JUGADORS I INTENTEM CREAR EL TAULELL
 		 * 
 		 */
-
+		
 		while (taulell == null) {
 //			jugadors = obtenirJugadors();
 			jugadors.add(new Jugador("Toni"));
@@ -112,8 +114,10 @@ public class Apocalipsis {
 						}
 					}
 
-					for (Jugador actual : jugadors) {
+					for (int j = 0; j < jugadors.size(); j++) {
 
+						Jugador actual = jugadors.get(j);
+						
 						if (actual.teCartes(actual.getMa())) {
 
 							if (actual.getPatada() > 0) {
@@ -149,17 +153,20 @@ public class Apocalipsis {
 //										numeroJugador = sInt.nextInt();
 //										numeroJugador -=1;
 										numeroJugador = rand.nextInt(taulell.numeroJugadors) + 1;
-										System.out.println(numeroJugador);
+										
 										numeroJugador--;
 
 										// System.out.println(jugadors.get(jugadorValidar).getId());
 									} while ((objectiu = taulell.validarJugador(numeroJugador)) == null);
-
+									System.out.println(numeroJugador+1);
+									
 									opcioJugar = cartaJugar.getOpcio();
 
 									actual.getMa().remove(cartaJugar);
 
 									taulell.executar(opcioJugar, actual, objectiu);
+
+									taulell.revisarMuerteSubita();
 
 									// Comprovar posicio especial
 
@@ -184,9 +191,7 @@ public class Apocalipsis {
 
 						}
 
-						teCarta = actual.teCartes(actual.getMa());
-
-						taulell.revisarMuerteSubita();
+						teCarta = quedenCartes();
 
 					}
 
@@ -236,6 +241,8 @@ public class Apocalipsis {
 
 			}
 		}
+		
+		System.out.println(taulell.toString());
 
 	}
 
@@ -282,6 +289,19 @@ public class Apocalipsis {
 
 	}
 
+	
+	public static boolean quedenCartes() {
+		boolean queden = false;
+		
+		for (Jugador j : jugadors) {
+			if (j.getMa().size() > 0) {
+				queden = true;
+			}
+		}
+		
+		return queden;
+	}
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

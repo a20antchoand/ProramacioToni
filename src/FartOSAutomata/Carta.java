@@ -1,4 +1,4 @@
-package JocDeCartes;
+package FartOSAutomata;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,24 +1,23 @@
-package JocDeCartes;
+package FartOSAutomata;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import JocDeCartes.Carta.tipusMoviment;
+import FartOSAutomata.Carta.tipusMoviment;
 
 public class Taulell {
 
 	// ATRIBUTS FINALS
 
-	public final int LONGITUD = 55;
+	public final int LONGITUD = 15;
 	public final int CASELLAESPECIAL = 8;
 	public final int VALORESPECIAL = 2;
 
 	// ATRIBUTS ESTATICS
 	public static Random rand = new Random();
 	public static Scanner s = new Scanner(System.in);
-	public static int idJugador = 0;
 
 	// ATRIBUTS DE TAULELL
 
@@ -174,7 +173,7 @@ public class Taulell {
 
 	public void executar(tipusMoviment opcioJugar, Jugador actual, Jugador objectiu) throws Exception {
 
-		System.out.println("Executant " + opcioJugar + " a " + objectiu.getNom());
+		System.out.println(actual.getNom() + " esta executant " + opcioJugar + " a " + objectiu.getNom());
 
 		switch (opcioJugar) {
 
@@ -278,9 +277,9 @@ public class Taulell {
 //			}
 //		}
 
-//		if (!objectiu.equals(actual)) {
-//			moviments = -moviments;
-//		}
+		if (!objectiu.equals(actual)) {
+			moviments = -moviments;
+		}
 
 		int posActual = objectiu.getPos();
 		int posFinal = posActual + moviments;
@@ -489,7 +488,8 @@ public class Taulell {
 			objectiu = jugadors.get(numJugador);
 
 			executar(tipusMoviment.MOUESP, actual, objectiu);
-
+			revisarMuerteSubita();
+			
 		}
 		return false;
 	}
@@ -552,15 +552,17 @@ public class Taulell {
 		}
 		
 		for (int i = 0; i < mortSubita.size(); i++) {
-			jugadors.remove(mortSubita.get(i));	
-			guanyador();
+			System.out.println("\nEl jugador " + mortSubita.get(i).getNom() + " ha mort per culpa de la mort subita.");
+
+			jugadors.remove(mortSubita.get(i));				
 		}
+		
+		guanyador();
 		
 	}
 
 	public void eliminarJugador(Jugador eliminar) {
-		jugadors.remove(eliminar);	
-		
+		jugadors.remove(eliminar);		
 	}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
