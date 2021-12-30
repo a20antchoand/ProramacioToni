@@ -26,7 +26,7 @@ import java.util.Scanner;
  * 
  * */
 
-public class Apocalipsis {
+public class FartOSAuto {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////ATRIBUTS///////////////////////////////////////////////////////////////////////////	
@@ -154,7 +154,6 @@ public class Apocalipsis {
 //										numeroJugador -=1;
 										numeroJugador = rand.nextInt(taulell.numeroJugadors) + 1;
 										
-										numeroJugador--;
 
 										// System.out.println(jugadors.get(jugadorValidar).getId());
 									} while ((objectiu = taulell.validarJugador(numeroJugador)) == null);

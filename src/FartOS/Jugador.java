@@ -14,7 +14,7 @@ public class Jugador {
 	 * */
 	
 	private final int vidasEstandard = 5;
-	public static int idJugador = 0;
+	public static int idJugador = 1;
 	/*
 	 * ATRIBUTS JUGADOR
 	 * 
@@ -54,7 +54,8 @@ public class Jugador {
 	public Jugador(String nom) {
 		this.nom = nom;
 		this.vides = vidasEstandard;
-		this.id = idJugador++;
+		this.id = idJugador;
+		idJugador++;
 	}
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

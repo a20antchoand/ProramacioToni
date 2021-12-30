@@ -29,8 +29,8 @@ public class Carta {
 	 * */
 
 	final static int NUMCARTES = 70;
-	final static int NUMCARTES34 = 3;
-	final static int NUMCARTES56 = 2;
+	final static int NUMCARTES34 = 2;
+	final static int NUMCARTES56 = 5;
 
 	/*
 	 * ATRIBUTS CARTA
